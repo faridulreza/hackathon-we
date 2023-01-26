@@ -16,3 +16,6 @@
 
 ### ER Diagram
 ![er_diagram](https://github.com/faridulreza/hackathon-we/blob/main/Checkpoint%2001/ER%20Diagram.png)
+
+### State Diagram
+![state_diagram](https://github.com/faridulreza/hackathon-we/blob/main/Checkpoint%2001/State%20Diagram.png)
