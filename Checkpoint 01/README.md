@@ -13,3 +13,6 @@
 
 ### Data Flow Diagram
 ![data_flow_diagram](https://github.com/faridulreza/hackathon-we/blob/main/Checkpoint%2001/Data%20flow%20Diagram.png)
+
+### ER Diagram
+![er_diagram](https://github.com/faridulreza/hackathon-we/blob/main/Checkpoint%2001/ER%20Diagram.png)
