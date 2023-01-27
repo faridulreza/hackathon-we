@@ -11,7 +11,7 @@ async function pushAttentionInterval() {}
 
 export async function setRefs(uid, attention_id) {
   realtimeRef = rdb.ref(uid);
-  attentionRef = db.collection("attentions").add(attention_id);
+  attentionRef = db.collection("attentions").doc(attention_id);
 }
 
 async function decide(CI) {

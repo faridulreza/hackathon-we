@@ -19,10 +19,10 @@ function waitForStart(uid, classID) {
         let student = uid;
 
         let attention = {
-          attentions: [],
+          "attentions": [],
           teacher,
           student,
-          class: classID,
+          "class": classID,
         };
 
         db.collection("attentions")

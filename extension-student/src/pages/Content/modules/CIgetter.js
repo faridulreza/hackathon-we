@@ -1,6 +1,6 @@
 import decide from "./decider";
 
-const INTERVAL = 5000; //ms
+const INTERVAL = 500; //ms
 
 const video = document.createElement("video");
 document.body.append(video);
@@ -29,7 +29,7 @@ async function loadCIndex(base64data) {
     };
 
     var url =
-      "https://c390-2400-a7c0-8000-b-1bf0-5fac-5ddd-b3b1.in.ngrok.io/api/v1/predict";
+      "http://127.0.0.1:5000/api/v1/predict/";
     var method = "POST";
     var xhr = createCORSRequest(method, url);
 
@@ -41,9 +41,16 @@ async function loadCIndex(base64data) {
       // Error code goes here.
     };
 
-    xhr.setRequestHeader("mode", "no-cors");
+    xhr.onreadystatechange=function(){
+      if(xhr.readyState == XMLHttpRequest.DONE){
+        let data = JSON.parse(xhr.responseText);
+        decide(data.res);
+      }
+    }
 
-    xhr.send(JSON.stringify({ images: base64data }));
+    //xhr.setRequestHeader("mode", "no-cors");
+    let d = JSON.stringify({image:base64data});
+    xhr.send(d);
   } catch (e) {
     console.log(e);
     decide(0);
