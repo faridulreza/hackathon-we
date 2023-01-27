@@ -4,6 +4,7 @@ const dispatch = (data) => {
   console.log(data);
 };
 
+//----------------Window opening------------
 const createNewWindow = () => {
   chrome.windows.create(
     {
@@ -33,7 +34,9 @@ const open_or_focus = () => {
 };
 
 chrome.action.onClicked.addListener(open_or_focus);
+//----------------END of window handling------------------
 
+//------------------auth-handler--------------------------
 const signInWithPopup = () => {
   //bug does not forgets selected account https://groups.google.com/a/chromium.org/g/chromium-extensions/c/4OX3cv_wepY
 
@@ -57,6 +60,8 @@ const signInWithPopup = () => {
 const signOut = () => {
   auth.signOut();
 };
+
+//----------------auth handler---------------------------------
 
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
   console.log(msg);

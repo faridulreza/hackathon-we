@@ -6,10 +6,6 @@ import { auth, db, firebase } from "../../../firebase";
 import "./Popup.css";
 import Home from "./components/Home";
 
-function signOut() {
-  chrome.runtime.sendMessage("signOut");
-}
-
 const Popup = () => {
   const [loadScreen, setLoadScreen] = useState(true);
   const [userDetails, setUserDetails] = useState(null);
@@ -29,6 +25,7 @@ const Popup = () => {
   return (
     <div id="app-body">
       {userDetails && <Home />}
+
       {!userDetails && <GoogleButton />}
     </div>
   );

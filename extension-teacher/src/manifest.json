@@ -26,6 +26,5 @@
       "https://www.googleapis.com/auth/userinfo.email",
       "https://www.googleapis.com/auth/userinfo.profile"
     ]
-  },
-  "permissions": ["storage", "identity", "identity.email"]
+  }
 }

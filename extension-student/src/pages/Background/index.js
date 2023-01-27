@@ -1,4 +1,4 @@
-import { auth, db, firebase } from "../../../firebase";
+import { rdb, auth, db, firebase } from "../../../firebase";
 
 const dispatch = (data) => {
   console.log(data);
@@ -70,9 +70,24 @@ const signOut = () => {
   auth.signOut();
 };
 
+//------------join meeting--------------------------
+
+const joinMeeting = (meet_code, classID) => {
+  // let meet_code = url_.split("/");
+  // meet_code = meet_code.length >= 3 ? meet_code[2] : "empty";
+
+  chrome.tabs.create({ url: "https://meet.google.com/" + meet_code }, (tab) => {
+    //start content script in this tab
+    chrome.tabs.sendMessage(tab.id, { start_observing: true, classID });
+  });
+};
+
+//----------end of join meeting---------------------
+
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
   console.log(msg);
   if (msg?.signIn) signInWithPopup(msg.reg);
   if (msg === "add_url") open_or_focus();
   if (msg === "signOut") signOut();
+  if (msg?.joinMeeting) joinMeeting(msg.meet_code, msg.classID);
 });
