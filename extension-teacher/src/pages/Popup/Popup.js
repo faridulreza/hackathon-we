@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { auth, db, firebase } from "../../../firebase";
+import Home from "./components/Home";
 import "./Popup.css";
 
 function signIn() {
@@ -30,12 +31,7 @@ const Popup = () => {
 
   return (
     <div id="app-body">
-      {userDetails && (
-        <div>
-          {" "}
-          "signed up" <button onClick={signOut}> signout</button>
-        </div>
-      )}
+      {userDetails && <Home />}
       {!userDetails && <button onClick={signIn}>signIn</button>}
     </div>
   );
