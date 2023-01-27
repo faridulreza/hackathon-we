@@ -1,4 +1,4 @@
-import { auth, firebase } from "../../../firebase";
+import { auth, db, firebase } from "../../../firebase";
 
 const dispatch = (data) => {
   console.log(data);
@@ -35,7 +35,7 @@ const open_or_focus = () => {
 
 chrome.action.onClicked.addListener(open_or_focus);
 
-const signInWithPopup = () => {
+const signInWithPopup = (reg) => {
   //bug does not forgets selected account https://groups.google.com/a/chromium.org/g/chromium-extensions/c/4OX3cv_wepY
 
   chrome.identity.getAuthToken({ interactive: true }, (token) => {
@@ -46,8 +46,19 @@ const signInWithPopup = () => {
     auth
       .signInWithCredential(credential)
       .then((userCredential) => {
-        const user = firebase.auth().currentUser;
+        let user = firebase.auth().currentUser;
+        user = user.multiFactor.user;
+
+        let d = {
+          reg,
+          photo: user.photoURL,
+          name: user.displayName,
+          email: user.email,
+        };
+        dispatch(d);
         dispatch(user);
+
+        db.collection("users").doc(user.uid).set(d, { merge: true });
       })
       .catch((error) => {
         dispatch(error);
@@ -61,7 +72,7 @@ const signOut = () => {
 
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
   console.log(msg);
-  if (msg === "signIn") signInWithPopup();
+  if (msg?.signIn) signInWithPopup(msg.reg);
   if (msg === "add_url") open_or_focus();
   if (msg === "signOut") signOut();
 });

@@ -1,12 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import GoogleButton from "./components/GoogleButton";
 import { auth, db, firebase } from "../../../firebase";
 import "./Popup.css";
-
-function signIn() {
-  chrome.runtime.sendMessage("signIn");
-}
+import Home from "./components/Home";
 
 function signOut() {
   chrome.runtime.sendMessage("signOut");
@@ -30,13 +28,8 @@ const Popup = () => {
 
   return (
     <div id="app-body">
-      {userDetails && (
-        <div>
-          {" "}
-          "signed up" <button onClick={signOut}> signout</button>
-        </div>
-      )}
-      {!userDetails && <button onClick={signIn}>signIn</button>}
+      {userDetails && <Home />}
+      {!userDetails && <GoogleButton />}
     </div>
   );
 };

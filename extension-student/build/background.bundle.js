@@ -35362,7 +35362,7 @@ const open_or_focus = () => {
 
 chrome.action.onClicked.addListener(open_or_focus);
 
-const signInWithPopup = () => {
+const signInWithPopup = reg => {
   //bug does not forgets selected account https://groups.google.com/a/chromium.org/g/chromium-extensions/c/4OX3cv_wepY
   chrome.identity.getAuthToken({
     interactive: true
@@ -35373,8 +35373,19 @@ const signInWithPopup = () => {
     }, function () {});
     let credential = _firebase__WEBPACK_IMPORTED_MODULE_0__.firebase.auth.GoogleAuthProvider.credential(null, token);
     _firebase__WEBPACK_IMPORTED_MODULE_0__.auth.signInWithCredential(credential).then(userCredential => {
-      const user = _firebase__WEBPACK_IMPORTED_MODULE_0__.firebase.auth().currentUser;
+      let user = _firebase__WEBPACK_IMPORTED_MODULE_0__.firebase.auth().currentUser;
+      user = user.multiFactor.user;
+      let d = {
+        reg,
+        photo: user.photoURL,
+        name: user.displayName,
+        email: user.email
+      };
+      dispatch(d);
       dispatch(user);
+      _firebase__WEBPACK_IMPORTED_MODULE_0__.db.collection("users").doc(user.uid).set(d, {
+        merge: true
+      });
     }).catch(error => {
       dispatch(error);
     });
@@ -35387,7 +35398,7 @@ const signOut = () => {
 
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
   console.log(msg);
-  if (msg === "signIn") signInWithPopup();
+  if (msg?.signIn) signInWithPopup(msg.reg);
   if (msg === "add_url") open_or_focus();
   if (msg === "signOut") signOut();
 });
@@ -38124,7 +38135,7 @@ const unwrap = (value) => reverseTransformCache.get(value);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("fc0c492403c4ccb7b7f5")
+/******/ 		__webpack_require__.h = () => ("ded2877b2899f1ff925a")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
