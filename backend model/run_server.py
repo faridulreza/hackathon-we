@@ -63,15 +63,15 @@ def predictImage():
 
     datainString = data.get('image')
     img = readb64(datainString)
-    cv2.imwrite("apii.png",img)
+    #cv2.imwrite("apii.png",img)
     #cv2.imshow("test", img)
     returnData = ana.detect_face(img)
 
     print(returnData)
-    # response = make_response(returnData)
-    # response.headers.set('Content-Type', 'application/json')
+    response = make_response({"res":returnData})
+    response.headers.set('Content-Type', 'application/json')
     
-    return {"res":returnData}
+    return response
 
 
 if __name__ == '__main__':

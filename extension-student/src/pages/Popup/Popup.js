@@ -24,7 +24,7 @@ const Popup = () => {
 
   return (
     <div id="app-body">
-      {userDetails && <Home />}
+      {userDetails && <Home details={userDetails} />}
 
       {!userDetails && <GoogleButton />}
     </div>

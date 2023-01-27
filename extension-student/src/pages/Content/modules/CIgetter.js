@@ -1,13 +1,12 @@
 import decide from "./decider";
 
 const INTERVAL = 5000; //ms
-const API =
-  "https://3e8d-2400-a7c0-8000-b-a6b3-3db2-d082-fbcb.in.ngrok.io/api/v1/predict";
 
 const video = document.createElement("video");
 document.body.append(video);
 const cnv = document.createElement("canvas"),
   ctx = cnv.getContext("2d");
+document.body.append(ctx);
 
 document.body.append(cnv);
 
@@ -30,7 +29,7 @@ async function loadCIndex(base64data) {
     };
 
     var url =
-      "https://b329-2400-a7c0-8000-b-a6b3-3db2-d082-fbcb.in.ngrok.io/api/v1/predict";
+      "https://c390-2400-a7c0-8000-b-1bf0-5fac-5ddd-b3b1.in.ngrok.io/api/v1/predict";
     var method = "POST";
     var xhr = createCORSRequest(method, url);
 
@@ -39,16 +38,12 @@ async function loadCIndex(base64data) {
     };
 
     xhr.onerror = function () {
-      decide(0);
+      // Error code goes here.
     };
 
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == XMLHttpRequest.DONE) {
-        decide(JSON.parse(xhr.responseText).res);
-      }
-    };
+    xhr.setRequestHeader("mode", "no-cors");
 
-    xhr.send(JSON.stringify({ image: base64data }));
+    xhr.send(JSON.stringify({ images: base64data }));
   } catch (e) {
     console.log(e);
     decide(0);

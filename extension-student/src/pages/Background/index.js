@@ -54,6 +54,7 @@ const signInWithPopup = (reg) => {
           photo: user.photoURL,
           name: user.displayName,
           email: user.email,
+          attentions: firebase.firestore.FieldValue.arrayUnion(""),
         };
         dispatch(d);
         dispatch(user);
@@ -72,13 +73,21 @@ const signOut = () => {
 
 //------------join meeting--------------------------
 
-const joinMeeting = (meet_code, classID) => {
+const joinMeeting = (meet_code, uid, classID) => {
   // let meet_code = url_.split("/");
   // meet_code = meet_code.length >= 3 ? meet_code[2] : "empty";
 
   chrome.tabs.create({ url: "https://meet.google.com/" + meet_code }, (tab) => {
     //start content script in this tab
-    chrome.tabs.sendMessage(tab.id, { start_observing: true, classID });
+    setTimeout(
+      () =>
+        chrome.tabs.sendMessage(tab.id, {
+          start_observing: true,
+          uid,
+          classID,
+        }),
+      3000
+    );
   });
 };
 
@@ -89,5 +98,5 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
   if (msg?.signIn) signInWithPopup(msg.reg);
   if (msg === "add_url") open_or_focus();
   if (msg === "signOut") signOut();
-  if (msg?.joinMeeting) joinMeeting(msg.meet_code, msg.classID);
+  if (msg?.joinMeeting) joinMeeting(msg.meet_code, msg.uid, msg.classID);
 });

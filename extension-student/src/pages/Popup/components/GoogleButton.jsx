@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import Gbutton from "react-google-button";
-
+import "./reg.css";
 function signIn(reg) {
-  chrome.runtime.sendMessage({ signIn: true, reg });
+  if (reg === null || reg.trim().length == 0) return;
+  const registration = reg.trim();
+  chrome.runtime.sendMessage({ signIn: true, reg: registration });
 }
 
 const GoogleButton = () => {
@@ -14,9 +16,8 @@ const GoogleButton = () => {
         type="text"
         onChange={(e) => setReg(e.target.value)}
         placeholder="Registration no"
-      ></input>
-      <br></br>
-      {reg && <Gbutton onClick={() => signIn(reg)} />}
+      />
+      <Gbutton style={{ marginTop: "20px" }} onClick={() => signIn(reg)} />
     </div>
   );
 };
