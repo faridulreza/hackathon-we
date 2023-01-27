@@ -1,0 +1,148 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.innerContainer {
+  max-height: 450px;
+  overflow: scroll;
+}
+
+.signoutButton {
+  background-color: red;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 5px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-top: 20px;
+  cursor: pointer;
+  border: none;
+}
+
+.card {
+  background-color: #e2d3d3;
+  padding: 15px;
+  border-radius: 10px;
+  width: 300px;
+  margin: 4px;
+}
+
+.textfield {
+  padding: 2px;
+  /* margin-bottom: 20px; */
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: medium;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ppp {
+  margin: 0;
+}
+
+.addButton {
+  justify-self: end;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: rgb(48, 5, 48);
+  font-size: 20px !important;
+  font: bold;
+  padding: 0;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  color: #e2d3d3;
+}
+
+.textfieldStudent {
+  padding: 2px;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: medium;
+  cursor: pointer;
+  justify-content: flex-start;
+  margin-left: 0;
+}
+.cardStudent {
+  background-color: #e2d3d3;
+  padding: 15px;
+  border-radius: 10px;
+  width: 300px;
+  margin: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.studentName {
+  font-weight: 700;
+}
+
+.arrow {
+  font-size: 30px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.center-position {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.inputContainer {
+  display: flex;
+  margin-top: 15%;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 20px;
+  width: 100%;
+}
+
+.input1 {
+  height: 40px;
+}
+
+.progressContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.innerProgressContainer {
+  display: flex;
+}
+
+.percentages {
+  padding: 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: green;
+}

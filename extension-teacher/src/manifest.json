@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Peekaboo - Student",
+  "name": "Peekaboo - Teacher",
   "version": "1.0.0",
   "description": "Tracks your attention during online classes",
   "background": { "service_worker": "background.bundle.js" },

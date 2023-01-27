@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { auth, db, firebase } from "../../../firebase";
+import GoogleButton from "./components/GoogleButton";
 import Home from "./components/Home";
 import "./Popup.css";
 
@@ -32,7 +33,7 @@ const Popup = () => {
   return (
     <div id="app-body">
       {userDetails && <Home />}
-      {!userDetails && <button onClick={signIn}>signIn</button>}
+      {!userDetails && <GoogleButton />}
     </div>
   );
 };
