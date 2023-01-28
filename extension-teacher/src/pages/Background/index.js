@@ -10,7 +10,7 @@ const createNewWindow = () => {
       url: "popup.html",
       type: "popup",
       width: 420,
-      height: 600,
+      height: 650,
     },
     function (window) {
       chrome.storage.local.set({ w_id: window.id });

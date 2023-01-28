@@ -1,17 +1,30 @@
-function attentionSeeker(track) {
-  let image = new ImageCapture(track);
+//detect if this meetlink is class that was created;
 
-  image.takePhoto().then((blob) => {});
+import { rdb } from "../../../firebase";
+import startMonitoring from "./modules/monitor";
+
+function askpromt(code, classID) {
+  let yes = confirm("Do you want to start monitoring the class with peekaboo?");
+
+  if (yes) {
+    rdb.ref(code).set(classID);
+    startMonitoring(classID);
+    return true;
+  }
+
+  return false;
 }
 
-navigator.mediaDevices
-  .getUserMedia({
-    video: true,
-  })
-  .then((stream) => {
-    console.log("Got Permission");
-    attentionSeeker(track.getVideoTracks()[0]);
-  })
-  .catch((err) => {
-    console.log(err);
+//entry point
+let url = window.location.href;
+url = url.split("/");
+
+if (url.length > 3) {
+  let code = url[3];
+
+  chrome.storage.local.get([code], (val) => {
+    if (val[code]) {
+      setTimeout(() => askpromt(code, val[code]), 3000);
+    }
   });
+}

@@ -1,7 +1,9 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import 'firebase/compat/functions';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+
+import "firebase/compat/firestore";
+import "firebase/compat/database";
+import "firebase/compat/functions";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,7 +16,7 @@ const firebaseConfig = {
   storageBucket: "peekaboo-5b3ef.appspot.com",
   messagingSenderId: "54888862574",
   appId: "1:54888862574:web:618ab3925b069da8e2a77f",
-  measurementId: "G-GVV3E10BKF"
+  measurementId: "G-GVV3E10BKF",
 };
 
 // Initialize Firebase
@@ -26,5 +28,6 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 // Use these for db & auth
 const db = firebaseApp.firestore();
 const auth = firebase.auth();
+const rdb = firebaseApp.database();
 
-export { auth, db, firebase };
+export { auth, db, firebase, rdb };

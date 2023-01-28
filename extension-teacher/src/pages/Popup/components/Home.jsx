@@ -62,6 +62,8 @@ const Home = () => {
     { name: "student Name", reg: "2003848904" },
     { name: "student Name", reg: "2003848904" },
     { name: "student Name", reg: "2003848904" },
+    { name: "student Name", reg: "2003848904" },
+    { name: "student Name", reg: "2003848904" },
   ];
 
   const handleProgress = () => {
